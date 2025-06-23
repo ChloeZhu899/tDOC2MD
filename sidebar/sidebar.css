@@ -1,0 +1,533 @@
+/* 腾讯文档转Markdown插件 - 苹果风格样式 */
+
+/* 重置和基础样式 */
+.tdm-sidebar * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 页面遮罩效果 */
+body.tdm-sidebar-open {
+  overflow: hidden;
+}
+
+body.tdm-sidebar-open::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 999998;
+  pointer-events: none;
+}
+
+/* 侧边栏主容器 */
+.tdm-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  background: #ffffff;
+  border-left: 1px solid #e5e5e7;
+  box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1d1d1f;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tdm-sidebar.tdm-sidebar-visible {
+  transform: translateX(0);
+}
+
+/* 侧边栏头部 */
+.tdm-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 50px 16px 20px;
+  border-bottom: 1px solid #f2f2f7;
+  background: #fbfbfd;
+  min-height: 60px;
+  position: relative;
+}
+
+.tdm-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #1d1d1f;
+}
+
+.tdm-icon {
+  font-size: 18px;
+}
+
+.tdm-close-btn {
+  width: 28px !important;
+  height: 28px !important;
+  border: 1px solid #dc3545 !important;
+  background: #f8f9fa !important;
+  border-radius: 50% !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  color: #dc3545 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  z-index: 10000 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.tdm-close-btn:hover {
+  background: #dc3545 !important;
+  color: white !important;
+  border-color: #dc3545 !important;
+  transform: scale(1.1) !important;
+}
+
+/* 侧边栏内容 */
+.tdm-sidebar-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 操作区域 */
+.tdm-action-section {
+  padding: 20px;
+  border-bottom: 1px solid #f2f2f7;
+}
+
+.tdm-convert-btn {
+  width: 100%;
+  height: 44px;
+  background: #007aff;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 122, 255, 0.3);
+}
+
+.tdm-convert-btn:hover {
+  background: #0056cc;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.4);
+}
+
+.tdm-convert-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 122, 255, 0.3);
+}
+
+.tdm-btn-icon {
+  font-size: 18px;
+}
+
+/* 下载选项区域 */
+.tdm-download-options {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+}
+
+.tdm-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.tdm-download-resources {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #007aff;
+}
+
+.tdm-checkbox-text {
+  flex: 1;
+  color: #1d1d1f;
+  font-weight: 500;
+}
+
+.tdm-download-info {
+  font-size: 11px;
+  color: #8e8e93;
+  line-height: 1.3;
+  padding-left: 24px;
+  font-style: italic;
+}
+
+/* 预览区域 */
+.tdm-preview-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tdm-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f2f2f7;
+  background: #fbfbfd;
+}
+
+.tdm-preview-title {
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.tdm-preview-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.tdm-copy-btn,
+.tdm-export-btn {
+  padding: 6px 12px;
+  background: #f2f2f7;
+  border: none;
+  border-radius: 6px;
+  color: #1d1d1f;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.tdm-copy-btn:hover:not(:disabled),
+.tdm-export-btn:hover:not(:disabled) {
+  background: #e5e5ea;
+}
+
+.tdm-copy-btn:disabled,
+.tdm-export-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tdm-copy-btn.tdm-copied {
+  background: #34c759;
+  color: white;
+}
+
+.tdm-export-btn.tdm-exported {
+  background: #ff9500;
+  color: white;
+}
+
+.tdm-copy-icon,
+.tdm-export-icon {
+  font-size: 12px;
+}
+
+/* 预览内容 */
+.tdm-preview-content {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.tdm-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #8e8e93;
+  text-align: center;
+}
+
+.tdm-placeholder-icon {
+  font-size: 48px;
+  opacity: 0.5;
+}
+
+.tdm-placeholder-text {
+  font-size: 14px;
+}
+
+/* 加载状态 */
+.tdm-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.tdm-loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #f2f2f7;
+  border-top: 3px solid #007aff;
+  border-radius: 50%;
+  animation: tdm-spin 1s linear infinite;
+}
+
+@keyframes tdm-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.tdm-loading-text {
+  color: #8e8e93;
+  font-size: 14px;
+}
+
+/* Markdown内容 */
+.tdm-markdown-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  margin: 0;
+  background: #ffffff;
+  border: none;
+  outline: none;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #1d1d1f;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-y: auto;
+  resize: none;
+}
+
+.tdm-markdown-content.tdm-error {
+  color: #ff3b30;
+  background: #fff5f5;
+}
+
+/* 自定义滚动条 */
+.tdm-markdown-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tdm-markdown-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tdm-markdown-content::-webkit-scrollbar-thumb {
+  background: #c7c7cc;
+  border-radius: 3px;
+}
+
+.tdm-markdown-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* 状态区域 */
+.tdm-status-section {
+  padding: 12px 20px;
+  border-top: 1px solid #f2f2f7;
+  background: #fbfbfd;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.tdm-status {
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tdm-status.tdm-status-success {
+  color: #34c759;
+}
+
+.tdm-status.tdm-status-error {
+  color: #ff3b30;
+}
+
+.tdm-status.tdm-status-info {
+  color: #007aff;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .tdm-sidebar {
+    width: 100vw;
+    border-left: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .tdm-sidebar-header {
+    padding: 12px 16px;
+  }
+  
+  .tdm-action-section {
+    padding: 16px;
+  }
+  
+  .tdm-preview-header {
+    padding: 12px 16px;
+  }
+  
+  .tdm-markdown-content {
+    padding: 16px;
+    font-size: 11px;
+  }
+  
+  .tdm-status-section {
+    padding: 10px 16px;
+  }
+}
+
+/* 动画效果 */
+.tdm-sidebar * {
+  transition: all 0.2s ease;
+}
+
+/* 焦点样式 */
+.tdm-convert-btn:focus,
+.tdm-copy-btn:focus,
+.tdm-close-btn:focus {
+  outline: 2px solid #007aff;
+  outline-offset: 2px;
+}
+
+/* 选中文本样式 */
+.tdm-markdown-content::selection {
+  background: #007aff;
+  color: white;
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .tdm-sidebar {
+    background: #1c1c1e;
+    border-left-color: #38383a;
+    color: #ffffff;
+  }
+  
+  .tdm-sidebar-header,
+  .tdm-preview-header,
+  .tdm-status-section {
+    background: #2c2c2e;
+    border-color: #38383a;
+  }
+  
+  .tdm-title,
+  .tdm-preview-title {
+    color: #ffffff;
+  }
+  
+  .tdm-close-btn {
+    background: #f8f9fa !important;
+    color: #dc3545 !important;
+    border: 1px solid #dc3545 !important;
+  }
+  
+  .tdm-close-btn:hover {
+    background: #dc3545 !important;
+    color: white !important;
+    border-color: #dc3545 !important;
+  }
+  
+  .tdm-copy-btn,
+  .tdm-export-btn {
+    background: #48484a;
+    color: #ffffff;
+  }
+  
+  .tdm-copy-btn:hover:not(:disabled),
+  .tdm-export-btn:hover:not(:disabled) {
+    background: #5a5a5c;
+  }
+  
+  .tdm-markdown-content {
+    background: #1c1c1e;
+    color: #ffffff;
+  }
+  
+  .tdm-markdown-content.tdm-error {
+    color: #ff453a;
+    background: #2d1b1b;
+  }
+  
+  .tdm-placeholder {
+    color: #8e8e93;
+  }
+  
+  .tdm-loading {
+    background: rgba(28, 28, 30, 0.9);
+  }
+  
+  .tdm-loading-spinner {
+    border-color: #48484a;
+    border-top-color: #007aff;
+  }
+  
+  .tdm-loading-text {
+    color: #8e8e93;
+  }
+  
+  /* 深色模式下载选项 */
+  .tdm-download-options {
+    background: #2c2c2e;
+    border-color: #48484a;
+  }
+  
+  .tdm-checkbox-text {
+    color: #ffffff;
+  }
+  
+  .tdm-download-info {
+    color: #8e8e93;
+  }
+}
